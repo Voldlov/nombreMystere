@@ -3,6 +3,7 @@ package game2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
 import menu.MenuFin;
 
@@ -35,6 +36,7 @@ public class JeuFaireDeviner {
 		millier = millier(saisie);
 		nombre = 5555;
 		essais = 0;
+		debut();
 	}
 	//Méthodes
 	public void debut() throws NumberFormatException, IOException {
@@ -48,11 +50,12 @@ public class JeuFaireDeviner {
 		}
 		else {
 			BufferedReader entree = new BufferedReader(new InputStreamReader(System.in));
+			entree.lines().collect(Collectors.joining());			
 			funite = unite(nombre);
 			fdizaine = dizaine(nombre);
 			fcentaine = centaine(nombre);
 			fmillier = millier(nombre);
-			nombre = plusMoins("", funite) + plusMoins("", fdizaine) + plusMoins("", fcentaine) + plusMoins("", fmillier);
+			nombre = plusMoins(entree, funite) + plusMoins(entree, fdizaine) + plusMoins(entree, fcentaine) + plusMoins(entre, fmillier);
 		}
 	}
 	
@@ -66,8 +69,6 @@ public class JeuFaireDeviner {
 			break;
 		case "-":
 			nb--;
-			break;
-		default:
 			break;
 		}
 		return nb;
